@@ -1,0 +1,210 @@
+<div class="row">
+
+    <div class="span">
+        <h2><?php echo $this->translate('Statistics') ?></h2>
+        <div id="chart1" style="height:300px; width:600px;"></div>
+        <div id="chart2" style="height:300px; width:600px;"></div>
+        <div id="pie1" style="margin-top:20px; margin-left:20px; width:600px; height:300px;"></div>
+		<div id="chart3" style="width:600px;height:300px;"></div>
+		<div id="chart4" style="width:600px;height:300px;"></div>
+		<div id="chart5" style="width:600px;height:300px;"></div>
+
+    </div>
+</div>
+
+<script id="source" language="javascript" type="text/javascript">
+$(document).ready(function(){
+   $.jsDate.config.defaultCentury = 2000;
+
+  var line1=[['18-Jun-12', 0], ['19-Jun-12', 3], ['20-Jun-12', 8], ['21-Jun-12', 14], ['22-Jun-12', 24], ['23-Jun-12', 3], ['24-Jun-12', 6], ['25-Jun-12', 20], ['26-Jun-12', 54], ['27-Jun-12', 68], ['28-Jun-12', 121], ['29-Jun-12', 154]];
+  var line2=[['18-Jun-12', 0], ['19-Jun-12', 0], ['20-Jun-12', 0], ['21-Jun-12', 4], ['22-Jun-12', 4], ['23-Jun-12', 4], ['24-Jun-12', 6], ['25-Jun-12', 0], ['26-Jun-12', 0], ['27-Jun-12', 20], ['28-Jun-12', 20], ['29-Jun-12', 20]];
+  var labels=['Total', 'Reinforcements'];
+  var plot1 = $.jqplot('chart1', [line1,line2], {
+      title:'<?php echo $this->translate('Number of troops') ?>',
+      axes:{
+        xaxis:{
+          renderer:$.jqplot.DateAxisRenderer,
+          tickOptions:{
+            formatString:'%b&nbsp;%#d'
+          },
+          min: '2012-06-18',
+        },
+        yaxis:{
+          min: 0,
+          tickOptions:{
+            formatString:'%.0f'
+            }
+        }
+      },
+      highlighter: {
+        show: true,
+        sizeAdjust: 8.5
+      },
+      cursor: {
+        show: false
+      },
+      legend: {
+      	show: true,
+      	labels: labels,
+      }
+  });
+
+  var line1=[['18-Jun-12', 0], ['19-Jun-12', 24], ['20-Jun-12', 50], ['21-Jun-12', 54], ['22-Jun-12', 58], ['23-Jun-12', 67], ['24-Jun-12', 72], ['25-Jun-12', 72], ['26-Jun-12', 92], ['27-Jun-12', 110], ['28-Jun-12', 121], ['29-Jun-12', 142]];
+  var line2=[['18-Jun-12', 0], ['19-Jun-12', 3], ['20-Jun-12', 6], ['21-Jun-12', 14], ['22-Jun-12', 24], ['23-Jun-12', 3], ['24-Jun-12', 6], ['25-Jun-12', 20], ['26-Jun-12', 24], ['27-Jun-12', 30], ['28-Jun-12', 52], ['29-Jun-12', 68]];
+  var labels=['<?php echo $this->translate('Resources') ?>', '<?php echo $this->translate('Inhabitants') ?>'];
+  var plot2 = $.jqplot('chart2', [line1,line2], {
+      title:'<?php echo $this->translate('Resource production and population') ?>',
+      axes:{
+        xaxis:{
+          renderer:$.jqplot.DateAxisRenderer,
+          tickOptions:{
+            formatString:'%#d&nbsp;%b'
+          },
+          min: '2012-06-18',
+        },
+        yaxis:{
+          min: 0,
+          tickOptions:{
+            formatString:'%.0f'
+            }
+        }
+      },
+      highlighter: {
+        show: true,
+        sizeAdjust: 8.5
+      },
+      cursor: {
+        show: false,
+      },
+      legend: {
+      	show: true,
+      	labels: labels,
+      }
+  });
+
+    var s1 = [['Tribe1',4151], ['Tribe2',2987], ['Tribe3',6282]];
+         
+    var plot8 = $.jqplot('pie1', [s1], {
+    	title: "Tribes",
+        grid: {
+            drawBorder: false,
+            drawGridlines: false,
+            background: '#ffffff',
+            shadow:false
+        },
+        axesDefaults: {
+             
+        },
+        seriesDefaults:{
+            renderer:$.jqplot.PieRenderer,
+            rendererOptions: {
+                showDataLabels: true,
+                sliceMargin: 5,
+            }
+        },
+        legend: {
+            show: true,
+            rendererOptions: {
+                numberRows: 3
+            },
+            location: 'e',
+        },
+    }); 
+
+    var attacks = [['18-Jun-12', 549208], ['19-Jun-12', 556257], ['20-Jun-12', 569512], ['21-Jun-12', 579943], ['22-Jun-12', 577986], ['23-Jun-12', 175189]];
+    var casualties = [['18-Jun-12', 111023], ['19-Jun-12', 110142], ['20-Jun-12', 113193], ['21-Jun-12', 114716], ['22-Jun-12', 115039], ['23-Jun-12', 33448]];
+    var labels= ['Attacks', 'Casualties']
+ 
+  var plot1 = $.jqplot('chart3', [attacks,casualties], {
+      title:'Attacks & casualties',
+      axes:{
+        xaxis:{
+          renderer:$.jqplot.DateAxisRenderer,
+          tickOptions:{
+            formatString:'%b&nbsp;%#d'
+          },
+          min: '2012-06-18',
+        },
+        yaxis:{
+          min: 0,
+          tickOptions:{
+            formatString:'%.0f'
+            }
+        }
+      },
+      highlighter: {
+        show: true,
+        sizeAdjust: 8.5
+      },
+      cursor: {
+        show: false
+      },
+      legend: {
+      	show: true,
+      	labels: labels,
+      }
+  });
+
+  var line1=[['18-Jun-12', 0], ['19-Jun-12', 556257], ['20-Jun-12', 569512], ['21-Jun-12', 579943], ['22-Jun-12', 577986], ['23-Jun-12', 175189]];
+
+  var plot1 = $.jqplot('chart4', [line1], {
+      title:'Rank',
+      axes:{
+        xaxis:{
+          renderer:$.jqplot.DateAxisRenderer,
+          tickOptions:{
+            formatString:'%b&nbsp;%#d'
+          },
+          min: '2012-06-18',
+        },
+        yaxis:{
+          min: 0,
+          tickOptions:{
+            formatString:'%.0f'
+            }
+        }
+      },
+      highlighter: {
+        show: true,
+        sizeAdjust: 8.5
+      },
+      cursor: {
+        show: false
+      },
+  });
+
+  var line1=[['18-Jun-12', 0], ['19-Jun-12', 5557], ['20-Jun-12', 5692], ['21-Jun-12', 793], ['22-Jun-12', 5986], ['23-Jun-12', 1789]];
+  var line2=[['18-Jun-12', 0], ['19-Jun-12', 2321], ['20-Jun-12', 0], ['21-Jun-12', 0], ['22-Jun-12', 0], ['23-Jun-12', 0]];
+  var labels=['Total', 'Killed'];
+
+  var plot1 = $.jqplot('chart5', [line1,line2], {
+      title:'Number of troops killed',
+      axes:{
+        xaxis:{
+          renderer:$.jqplot.DateAxisRenderer,
+          tickOptions:{
+            formatString:'%b&nbsp;%#d'
+          },
+          min: '2012-06-18',
+        },
+        yaxis:{
+          min: 0,
+          tickOptions:{
+            formatString:'%.0f'
+            }
+        }
+      },
+      highlighter: {
+        show: true,
+        sizeAdjust: 8.5
+      },
+      cursor: {
+        show: false
+      },
+      legend: {
+      	show: true,
+      	labels: labels,
+      }
+  });
+});
+    </script> 
